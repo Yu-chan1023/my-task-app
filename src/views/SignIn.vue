@@ -60,9 +60,4 @@ export default {
 </script>
 
 <style scoped>
-/* .register {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 </style>

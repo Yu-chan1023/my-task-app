@@ -54,10 +54,6 @@ export default {
       .catch(e => {
         console.log(e);
       });
-    },
-    signOut() {
-      firebase.auth().signOut();
-      this.$router.push('/signin')
     }
   }
 };

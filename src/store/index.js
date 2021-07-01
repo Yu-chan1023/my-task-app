@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-
+// localStorage.clear()
 const taskProjectsData = localStorage.getItem("task-projects")
 const labelLists = localStorage.getItem("label-lists")
 
@@ -16,40 +16,40 @@ const store = new Vuex.Store({
             id: 1,
             title: "テスト4",
             cards: [
-              { id: 1, title: "テスト1", description: "テスト1", priority: "高", inCharge:  "南"},
-              { id: 2, title: "テスト2", description: "テスト2", priority: "中", inCharge:  "山本"},
-              { id: 3, title: "テスト3", description: "テスト3", priority: "高", inCharge:  "松浦"},
-              { id: 4, title: "テスト4", description: "テスト4", priority: "小", inCharge:  "酒井"},
+              { title: "テスト1", description: "テスト1", priority: "高", inCharge:  "南"},
+              { title: "テスト2", description: "テスト2", priority: "中", inCharge:  "山本"},
+              { title: "テスト3", description: "テスト3", priority: "高", inCharge:  "松浦"},
+              { title: "テスト4", description: "テスト4", priority: "低", inCharge:  "酒井"},
             ]
           },
           { 
             id: 2,
             title: "テスト2",
             cards: [
-              { id: 5, title: "テスト5", description: "テスト5", priority: "高", inCharge:  "南"},
-              { id: 6, title: "テスト6", description: "テスト6", priority: "中", inCharge:  "山本"},
-              { id: 7, title: "テスト7", description: "テスト7", priority: "高", inCharge:  "松浦"},
-              { id: 8, title: "テスト8", description: "テスト8", priority: "小", inCharge:  "酒井"},
+              { title: "テスト5", description: "テスト5", priority: "高", inCharge:  "南"},
+              { title: "テスト6", description: "テスト6", priority: "中", inCharge:  "山本"},
+              { title: "テスト7", description: "テスト7", priority: "高", inCharge:  "松浦"},
+              { title: "テスト8", description: "テスト8", priority: "低", inCharge:  "酒井"},
             ]
           },
           { 
             id: 3,
             title: "テスト3",
             cards: [
-              { id: 9, title: "テスト9", description: "テスト9", priority: "高", inCharge:  "南"},
-              { id: 10, title: "テスト10", description: "テスト10", priority: "中", inCharge:  "山本"},
-              { id: 11, title: "テスト11", description: "テスト11", priority: "高", inCharge:  "松浦"},
-              { id: 12, title: "テスト12", description: "テスト12", priority: "小", inCharge:  "酒井"},
+              { title: "テスト9", description: "テスト9", priority: "高", inCharge:  "南"},
+              { title: "テスト10", description: "テスト10", priority: "中", inCharge:  "山本"},
+              { title: "テスト11", description: "テスト11", priority: "高", inCharge:  "松浦"},
+              { title: "テスト12", description: "テスト12", priority: "低", inCharge:  "酒井"},
             ]
           },
           { 
             id: 4,
             title: "テスト3",
             cards: [
-              { id: 9, title: "テスト9", description: "テスト9", priority: "高", inCharge:  "南"},
-              { id: 10, title: "テスト10", description: "テスト10", priority: "中", inCharge:  "山本"},
-              { id: 11, title: "テスト11", description: "テスト11", priority: "高", inCharge:  "松浦"},
-              { id: 12, title: "テスト12", description: "テスト12", priority: "小", inCharge:  "酒井"},
+              { title: "テスト9", description: "テスト9", priority: "高", inCharge:  "南"},
+              { title: "テスト10", description: "テスト10", priority: "中", inCharge:  "山本"},
+              { title: "テスト11", description: "テスト11", priority: "高", inCharge:  "松浦"},
+              { title: "テスト12", description: "テスト12", priority: "低", inCharge:  "酒井"},
             ]
           }
         ]
@@ -84,9 +84,23 @@ const store = new Vuex.Store({
         name: payload.name
       })
     },
+    addCard(state, payload) {
+      state.projects[payload.filter - 1].lists[payload.listIndex].cards.push({
+        title: payload.title,
+        priority: payload.priority,
+        inCharge: payload.inCharge,
+        date: payload.date
+      })
+    },
+    removeCard(state, payload) {
+      state.projects[payload.filter - 1].lists[payload.listIndex].cards.splice(payload.cardIndex, 1)
+    },
     changeFilter (state, {filter}) {
       state.filter = filter
     },
+    updateList(state, payload) {
+      state.projects = payload.projects
+    }
   },
   actions: {
     addList({commit}, payload) {
@@ -97,6 +111,15 @@ const store = new Vuex.Store({
     },
     addProject({commit}, payload) {
       commit('addProject', payload)
+    },
+    addCard({commit}, payload) {
+      commit('addCard', payload)
+    },
+    removeCard({commit}, payload) {
+      commit('removeCard', payload)
+    },
+    updateList({commit}, payload) {
+      commit('updateList', payload)
     }
   },
   getters: {

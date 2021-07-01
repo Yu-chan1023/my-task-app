@@ -19,7 +19,7 @@
           </v-list-item>
         </v-list>
       </v-container>
-      <add-label/>
+      <AddLabel />
     </v-navigation-drawer>
     <v-app-bar app class="white--text lighten-1--text" color="cyan lighten-1" clipped-left>
       <v-app-bar-nav-icon @click="drawer=!drawer" color="white"></v-app-bar-nav-icon>
@@ -31,15 +31,17 @@
     </v-app-bar>
     <div class="px-5 py-5">
       <div class="lists-container" v-for="p in project" :key="p.id">
-        <list 
+        <List
           class="mr-5" 
           v-for="(list, index) in p.lists" 
           :key="list.id" 
           :title="list.title" 
+          :cards="list.cards"
           :listIndex="index"
           :filter="filter"
+          @change="movingCard"
         />
-        <add-list :filter="filter"/>
+        <AddList :filter="filter"/>
       </div>
     </div>
   </div>
@@ -55,7 +57,7 @@ export default {
   name: 'App',
   data() {
     return {
-      drawer: false
+      drawer: false,
     }
   },
   components: {
@@ -71,7 +73,10 @@ export default {
     changeFilter(labelId) {
       this.$store.commit('changeFilter', {
         filter: labelId
-      })[0]
+      })
+    },
+    movingCard() {
+      this.$store.dispatch('updateList', { projects: this.projects })
     },
   },
   computed: {
@@ -111,4 +116,5 @@ export default {
 .project-lists:hover {
   background-color: #EEE;
 }
+
 </style>

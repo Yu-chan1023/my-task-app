@@ -2,20 +2,21 @@
   <div style="min-width: 320px;">
     <div style="background-color: #385F73; padding: 10px; border-radius: 6px; color: #FFF;">
       <div
-        v-if="!showListInput"
-        @click="showListInput = true"
+        v-if="showList"
+        @click="showListInput"
+        style="cursor: pointer;"
       >+カテゴリー追加
       </div>
       <div v-else>
-        <input type="text" v-model="title" placeholder="カテゴリー追加" style="background-color: #FFF; width: 100%; padding: 5px; margin-bottom: 10px;">
+        <input type="text" v-model="title" ref="input" placeholder="カテゴリー追加" style="background-color: #FFF; width: 100%; padding: 5px; margin-bottom: 10px;">
         <button @click="addList" class="add-list" style="margin-right: 5px;">追加</button>
-        <button @click="showListInput = false" class="cancel-list">キャンセル</button>
+        <button @click="showList = true" class="cancel-list">キャンセル</button>
       </div>
     </div>
   </div>
 </template>
 <script>
-
+import Vue from 'vue'
 export default {
   props: {
     filter: {
@@ -25,14 +26,23 @@ export default {
   data() {
     return {
       title: '',
-      showListInput: false
+      showList: true
     }
   },
   methods: {
     addList() {
       this.$store.dispatch('addList', { title: this.title, filter: this.filter })
       this.title = ""
-      this.showListInput = false
+      this.showList = true
+    },
+    focusListInput() {
+      this.$refs.input.focus();
+    },
+    showListInput() {
+      this.showList = false;
+      Vue.nextTick(() => {
+        this.focusListInput();
+      });
     }
   }
 };

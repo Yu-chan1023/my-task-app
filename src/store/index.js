@@ -14,42 +14,42 @@ const store = new Vuex.Store({
         lists: [
           {
             id: 1,
-            title: "テスト4",
+            title: "テスト1",
             cards: [
-              { title: "テスト1", description: "テスト1", priority: "高", inCharge:  "南"},
-              { title: "テスト2", description: "テスト2", priority: "中", inCharge:  "山本"},
-              { title: "テスト3", description: "テスト3", priority: "高", inCharge:  "松浦"},
-              { title: "テスト4", description: "テスト4", priority: "低", inCharge:  "酒井"},
+              { title: "テスト1", date: "2021-7-10", priority: "高", inCharge:  "南"},
+              { title: "テスト2", date: "2021-7-10", priority: "中", inCharge:  "山本"},
+              { title: "テスト3", date: "2021-7-10", priority: "高", inCharge:  "松浦"},
+              { title: "テスト4", date: "2021-7-10", priority: "低", inCharge:  "酒井"},
             ]
           },
           { 
             id: 2,
             title: "テスト2",
             cards: [
-              { title: "テスト5", description: "テスト5", priority: "高", inCharge:  "南"},
-              { title: "テスト6", description: "テスト6", priority: "中", inCharge:  "山本"},
-              { title: "テスト7", description: "テスト7", priority: "高", inCharge:  "松浦"},
-              { title: "テスト8", description: "テスト8", priority: "低", inCharge:  "酒井"},
+              { title: "テスト5", date: "2021-7-10", priority: "高", inCharge:  "南"},
+              { title: "テスト6", date: "2021-7-10", priority: "中", inCharge:  "山本"},
+              { title: "テスト7", date: "2021-7-10", priority: "高", inCharge:  "松浦"},
+              { title: "テスト8", date: "2021-7-10", priority: "低", inCharge:  "酒井"},
             ]
           },
           { 
             id: 3,
             title: "テスト3",
             cards: [
-              { title: "テスト9", description: "テスト9", priority: "高", inCharge:  "南"},
-              { title: "テスト10", description: "テスト10", priority: "中", inCharge:  "山本"},
-              { title: "テスト11", description: "テスト11", priority: "高", inCharge:  "松浦"},
-              { title: "テスト12", description: "テスト12", priority: "低", inCharge:  "酒井"},
+              { title: "テスト9", date: "2021-7-10", priority: "高", inCharge:  "南"},
+              { title: "テスト10", date: "2021-7-20", priority: "中", inCharge:  "山本"},
+              { title: "テスト11", date: "2021-7-20", priority: "高", inCharge:  "松浦"},
+              { title: "テスト12", date: "2021-7-20", priority: "低", inCharge:  "酒井"},
             ]
           },
           { 
             id: 4,
-            title: "テスト3",
+            title: "テスト4",
             cards: [
-              { title: "テスト9", description: "テスト9", priority: "高", inCharge:  "南"},
-              { title: "テスト10", description: "テスト10", priority: "中", inCharge:  "山本"},
-              { title: "テスト11", description: "テスト11", priority: "高", inCharge:  "松浦"},
-              { title: "テスト12", description: "テスト12", priority: "低", inCharge:  "酒井"},
+              { title: "テスト13", date: "2021-7-20", priority: "高", inCharge:  "南"},
+              { title: "テスト14", date: "2021-7-20", priority: "中", inCharge:  "山本"},
+              { title: "テスト15", date: "2021-7-20", priority: "高", inCharge:  "松浦"},
+              { title: "テスト16", date: "2021-7-20", priority: "低", inCharge:  "酒井"},
             ]
           }
         ]

@@ -69,19 +69,23 @@ export default {
   },
   methods: {
     addCard() {
-      this.$store.dispatch('addCard', { 
-        title: this.title, 
-        inCharge: this.inCharge, 
-        priority: this.priority, 
-        date: this.date,
-        listIndex: this.listIndex,
-        filter: this.filter,
-      })
-      this.title = ""
-      this.inCharge = ""
-      this.priority = ""
-      this.date = ""
-      this.cardModal = false
+      if ( this.title.length > 0 && this.inCharge.length > 0 && this.priority.length > 0 && this.date.length > 0 ) {
+        this.$store.dispatch('addCard', { 
+          title: this.title, 
+          inCharge: this.inCharge, 
+          priority: this.priority, 
+          date: this.date,
+          listIndex: this.listIndex,
+          filter: this.filter,
+        })
+        this.title = ""
+        this.inCharge = ""
+        this.priority = ""
+        this.date = ""
+        this.cardModal = false
+      } else {
+        alert("入力不足があります")
+      }
     }
   }
 };

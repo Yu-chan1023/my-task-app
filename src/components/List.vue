@@ -2,8 +2,12 @@
   <div>
     <v-card width="320" >
       <v-app-bar dark color="#385F73">
-        <v-toolbar-title>{{ title }}</v-toolbar-title>
+        <v-toolbar-title style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 200px" >{{ title }}</v-toolbar-title>
         <v-spacer></v-spacer>
+        <div style="position: relative;">
+          <span style="z-index: 100; position: absolute; top: -15px; left: -15px; width: 25px; height: 25px; line-height: 25px; text-align: center; background: tomato; border-radius: 100%; font-size: 10px; font-weight: bold;">{{ totalCard }}</span>
+          <v-icon>mdi-card-bulleted-outline</v-icon>
+        </div>
         <v-btn icon @click="removeList">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
@@ -60,6 +64,11 @@ export default {
         this.$store.dispatch('removeList', { filter: this.filter, listIndex: this.listIndex })
       }
     },
+  },
+  computed: {
+    totalCard() {
+      return this.cards.length
+    }
   }
 };
 </script>

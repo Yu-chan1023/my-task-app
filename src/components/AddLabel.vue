@@ -49,8 +49,13 @@ export default {
   },
   methods: {
     addProject() {
-      this.$store.dispatch('addProject', { name: this.name, lists: this.lists })
-      this.showProject = true
+      if ( this.name.length > 0 ) {
+        this.$store.dispatch('addProject', { name: this.name, lists: this.lists })
+        this.showProject = true
+        this.name = ""
+      } else {
+        alert('プロジェクト名が空です')
+      }
     },
     focusProjectInput() {
       this.$refs.input.focus();

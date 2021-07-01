@@ -8,7 +8,13 @@
       >+カテゴリー追加
       </div>
       <div v-else>
-        <input type="text" v-model="title" ref="input" placeholder="カテゴリー追加" style="background-color: #FFF; width: 100%; padding: 5px; margin-bottom: 10px;">
+        <input 
+          type="text" 
+          v-model="title" 
+          ref="input" 
+          placeholder="カテゴリー追加" 
+          style="background-color: #FFF; width: 100%; padding: 5px; margin-bottom: 10px;"
+        >
         <button @click="addList" class="add-list" style="margin-right: 5px;">追加</button>
         <button @click="showList = true" class="cancel-list">キャンセル</button>
       </div>
@@ -31,9 +37,13 @@ export default {
   },
   methods: {
     addList() {
-      this.$store.dispatch('addList', { title: this.title, filter: this.filter })
-      this.title = ""
-      this.showList = true
+      if ( this.title.length > 0 ) {
+        this.$store.dispatch('addList', { title: this.title, filter: this.filter })
+        this.showList = true
+        this.title = ""
+      } else {
+        alert('リストタイトルが空です')
+      }
     },
     focusListInput() {
       this.$refs.input.focus();

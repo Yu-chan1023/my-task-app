@@ -2,7 +2,7 @@
   <div>
     <v-card  class="mb-3" style="cursor: grab;">
       <v-card-title>
-        <div class="text-h5">{{ title }}</div>
+        <div class="text-h6" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 220px">{{ title }}</div>
         <v-spacer></v-spacer>
         <v-menu offset-y>
           <template v-slot:activator="{on}">
@@ -31,8 +31,8 @@
       <v-card-text>
         <p class="priority" :style="{ backgroundColor: priorityColor }">{{ priority }}</p>
         <div style="display: flex;">
-          <p class="" style="margin: 0; margin-right: 10px">{{ inCharge }}</p>
-          <p class="" style="margin: 0;">{{ date }}</p>
+          <p class="" style="margin: 0; margin-right: 20px">{{ inCharge }}</p>
+          <p class="" style="margin: 0;">{{ dateFormat }}</p>
         </div>
       </v-card-text>
     </v-card>
@@ -81,6 +81,10 @@ export default {
       } else {
         return 'limegreen'
       }
+    },
+    dateFormat() {
+      const target = /-/g; 
+      return this.date.replace(target, '/')
     }
   }
 };

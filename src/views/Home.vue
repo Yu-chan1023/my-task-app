@@ -13,7 +13,7 @@
         <v-list dense nav class="mt-5">
           <v-list-item v-for="(label, index) in labels" :key="index" class="project-lists">
             <v-list-item-content>
-              <label :for="'project-' + index" class="project-label">{{ label.name }}</label>
+              <label :for="'project-' + index" class="project-label" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ label.name }}</label>
               <input type="radio" :id="'project-' + index" class="project-radio" :checked="label.id === filter" v-on:change="changeFilter(label.id)">
             </v-list-item-content>
           </v-list-item>

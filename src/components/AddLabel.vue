@@ -1,12 +1,13 @@
 <template>
   <div>
     <div class="add-label">
-      <span v-if="showProject" @click="showProject=false">+プロジェクトを追加</span>
+      <span v-if="showProject" @click="showProjectInput" style="cursor: pointer;">+プロジェクトを追加</span>
       <div class="add-label-box" v-else>
         <input 
           type="text"
           v-model="name"
           placeholder="プロジェクトを追加"
+          ref="input"
         >
         <button @click="addProject">追加</button>
         <button @click="showProject=true">キャンセル</button>
@@ -14,8 +15,9 @@
     </div>
   </div>
 </template>
-<script>
 
+<script>
+import Vue from 'vue'
 export default {
   data() {
     return {
@@ -50,7 +52,15 @@ export default {
       this.$store.dispatch('addProject', { name: this.name, lists: this.lists })
       this.showProject = true
     },
-
+    focusProjectInput() {
+      this.$refs.input.focus();
+    },
+    showProjectInput() {
+      this.showProject = false;
+      Vue.nextTick(() => {
+        this.focusProjectInput();
+      });
+    }
   }
 };
 </script>

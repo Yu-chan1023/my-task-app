@@ -9,7 +9,7 @@
     </v-app-bar>
 
     <v-card width="500px" class="mt-12 mx-auto">
-      <v-card-title><h1 class="display-1">ログイン</h1></v-card-title>
+      <v-card-title><h1 class="display-1">ユーザー登録</h1></v-card-title>
       <v-card-text>
         <v-form @submit.prevent="registerUser">
           <v-text-field 
@@ -26,7 +26,7 @@
             @click:append="showPass = !showPass"
             v-model="password"
           />
-          <v-card-actions><v-btn type="submit" color="cyan lighten-1" class="white--text">ログイン</v-btn></v-card-actions>
+          <v-card-actions><v-btn type="submit" color="cyan lighten-1" class="white--text">登録</v-btn></v-card-actions>
         </v-form>
       </v-card-text>
     </v-card>
@@ -50,6 +50,7 @@ export default {
       console.log(this.email, this.password)
       firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(response => {
         console.log(response)
+        this.$router.push("/")
       })
       .catch(e => {
         console.log(e);

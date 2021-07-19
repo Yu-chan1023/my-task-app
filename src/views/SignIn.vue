@@ -4,7 +4,7 @@
       <v-toolbar-title>MyTaskApp</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn color="mr-3" text><router-link to="/register" class="white--text">ログイン</router-link></v-btn>
+        <v-btn color="mr-3" text><router-link to="/register" class="white--text">ユーザー登録</router-link></v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
